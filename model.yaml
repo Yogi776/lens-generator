@@ -1,4 +1,4 @@
-logical_model: in-moment-intelligence
+logical_model: demo-lens
 source: icebase
 schema: retail
 models:
@@ -101,15 +101,15 @@ entities:
     - name: transaction_type
       type: string
     - name: transaction_amount
-      type: decimal
+      type: number
     - name: spend_category
       type: string
     - name: balance
-      type: decimal
+      type: number
     - name: card_type
       type: string
     - name: card_spend_limit
-      type: decimal
+      type: number
     - name: last_bill_date
       type: time
   transaction_context:
