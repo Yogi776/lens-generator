@@ -1,0 +1,30 @@
+tables:
+  - name: product
+    sql: '{{ load_sql(''product'') }}'
+    description: Comprehensive data on products, including core attributes, relationships, and transactional details.
+    public: true
+    joins:
+      - name: transaction
+        relationship: one_to_many
+        sql: '{{TABLE.product_id}}={transaction.product_id}'
+    dimensions:
+      - name: product_id
+        description: The product id field represents the integer for product.
+        type: integer
+        column: product_id
+        primary_key: true
+      - name: product_name
+        description: The product name field represents the string for product.
+        type: string
+        column: product_name
+        primary_key: false
+      - name: product_category
+        description: The product category field represents the string for product.
+        type: string
+        column: product_category
+        primary_key: false
+      - name: price
+        description: The price field represents the float for product.
+        type: float
+        column: price
+        primary_key: false

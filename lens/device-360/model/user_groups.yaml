@@ -1,0 +1,30 @@
+user_groups:
+  - name: resolved_issue_analyst
+    api_scopes:
+      - meta
+      - data
+      - graphql
+      - jobs
+      - source
+    includes:
+      - users:id:shubhanshujain
+      - users:id:animeshkumar
+  - name: reader
+    api_scopes:
+      - meta
+      - data
+      - graphql
+      - jobs
+      - source
+    includes:
+      - users:id:yogeshkhangode
+    excludes:
+      - users:id:kishanmahajan
+  - name: default
+    api_scopes:
+      - meta
+      - data
+      - graphql
+      - jobs
+      - source
+    includes: '*'

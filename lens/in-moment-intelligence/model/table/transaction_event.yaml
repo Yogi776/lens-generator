@@ -1,0 +1,35 @@
+tables:
+  - name: transaction_event
+    sql: '{{ load_sql(''transaction_event'') }}'
+    description: Comprehensive data on transaction_events, including core attributes, relationships, and transactional details.
+    public: true
+    joins:
+      - name: transaction
+        relationship: one_to_many
+        sql: '{{TABLE.transaction_event_id}}={transaction.transaction_event_id}'
+    dimensions:
+      - name: transaction_event_id
+        description: Transaction event id is a numeric field in the transaction event entity representing the unique identifier for each transaction event.
+        type: number
+        column: transaction_event_id
+        primary_key: true
+      - name: transaction_id
+        description: The transaction id is a numeric field in the transaction event entity representing the unique identifier for each transaction.
+        type: number
+        column: transaction_id
+        primary_key: true
+      - name: event_type
+        description: The event type string field in the transaction event entity represents the type or category of the transaction event.
+        type: string
+        column: event_type
+        primary_key: false
+      - name: event_timestamp
+        description: The event timestamp field in the transaction event entity represents the precise time at which a transactional event occurred.
+        type: time
+        column: event_timestamp
+        primary_key: false
+      - name: event_status
+        description: The event status field in the transaction event entity represents the current status of a specific event as a text string.
+        type: string
+        column: event_status
+        primary_key: false

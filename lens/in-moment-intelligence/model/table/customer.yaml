@@ -1,0 +1,140 @@
+tables:
+  - name: customer
+    sql: '{{ load_sql(''customer'') }}'
+    description: Comprehensive data on customers, including core attributes, relationships, and transactional details.
+    public: true
+    joins:
+      - name: transaction
+        relationship: one_to_many
+        sql: '{{TABLE.customer_id}}={transaction.customer_id}'
+    dimensions:
+      - name: customer_id
+        description: The customer id field is a numeric identifier unique to each customer in the customer entity.
+        type: number
+        column: customer_id
+        primary_key: true
+      - name: first_name
+        description: The first name field is a string type that stores the customers first name.
+        type: string
+        column: first_name
+        primary_key: false
+      - name: last_name
+        description: The last name field is a string type that stores the surname of the customer.
+        type: string
+        column: last_name
+        primary_key: false
+      - name: date_of_birth
+        description: The date of birth field is for storing the birth date of the customer entity.
+        type: time
+        column: date_of_birth
+        primary_key: false
+      - name: age
+        description: The age field is a numerical value indicating the customers age.
+        type: number
+        column: age
+        primary_key: false
+      - name: gender
+        description: The gender field in the customer entity refers to the text representation of a customers biological sex.
+        type: string
+        column: gender
+        primary_key: false
+      - name: nationality
+        description: The nationality field in the customer entity represents the country of origin or citizenship of the customer, stored as text.
+        type: string
+        column: nationality
+        primary_key: false
+      - name: marital_status
+        description: The marital status field in the customer entity represents the marital status of the customer as a text string.
+        type: string
+        column: marital_status
+        primary_key: false
+      - name: address_line1
+        description: The address line1 field in the customer entity represents the first line of the customers street address as a string.
+        type: string
+        column: address_line1
+        primary_key: false
+      - name: city
+        description: The city field refers to the city in which the customer is located, and its a type of text string.
+        type: string
+        column: city
+        primary_key: false
+      - name: postal_code
+        description: The postal code field refers to the alphanumeric string representing the customers area of residence for postal services.
+        type: string
+        column: postal_code
+        primary_key: false
+      - name: country
+        description: The country field in the customer entity represents the country where the customer resides and is represented as a string.
+        type: string
+        column: country
+        primary_key: false
+      - name: phone_number
+        description: The phone number field is a string type that stores the customers contact number.
+        type: string
+        column: phone_number
+        primary_key: false
+      - name: email_id
+        description: The email id field is a string type in the customer entity storing the customers email address.
+        type: string
+        column: email_id
+        primary_key: true
+      - name: employment_status
+        description: The employment status field in the customer entity represents the current job status of the customer as a text string.
+        type: string
+        column: employment_status
+        primary_key: false
+      - name: identification_type
+        description: This is a field representing the type of identification document used by the customer, stored as a string.
+        type: string
+        column: identification_type
+        primary_key: true
+      - name: identification_number
+        description: The identification number field is a string of characters representing a unique identifier for each customer in the database.
+        type: string
+        column: identification_number
+        primary_key: true
+      - name: communication_channel
+        description: The communication channel field of the customer entity represents the method through which the customer prefers to be contacted.
+        type: string
+        column: communication_channel
+        primary_key: false
+      - name: credit_score
+        description: The credit score field represents the numeric credit rating of a customer.
+        type: number
+        column: credit_score
+        primary_key: false
+      - name: risk_level
+        description: The risk level field refers to the categorization of a customers riskiness based on various factors, represented as a string value.
+        type: string
+        column: risk_level
+        primary_key: false
+      - name: fraud_risk
+        description: The fraud risk field represents the risk level of fraudulent activity associated with a customer, stored as a string.
+        type: string
+        column: fraud_risk
+        primary_key: false
+      - name: customer_status
+        description: The customer status field in the customer entity represents the current status or condition of a customer in text format.
+        type: string
+        column: customer_status
+        primary_key: false
+      - name: income
+        description: The income field in the customer entity represents the customers monetary earnings, stored as a text value.
+        type: string
+        column: income
+        primary_key: false
+      - name: family_size
+        description: The family size field in the customer entity represents the size of the customers family as a text string.
+        type: string
+        column: family_size
+        primary_key: false
+      - name: education_level
+        description: The education level field refers to the highest level of education achieved by a customer, represented as a text string.
+        type: string
+        column: education_level
+        primary_key: false
+      - name: customer_join_date
+        description: The field customer join date refers to the time at which the customer joined or registered with the service.
+        type: time
+        column: customer_join_date
+        primary_key: false

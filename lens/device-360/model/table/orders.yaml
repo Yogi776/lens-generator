@@ -1,0 +1,25 @@
+tables:
+  - name: orders
+    sql: '{{ load_sql(''orders'') }}'
+    description: Comprehensive data on orderss, including core attributes, relationships, and transactional details.
+    public: true
+    joins:
+      - name: transaction
+        relationship: one_to_many
+        sql: '{{TABLE.orders_id}}={transaction.orders_id}'
+    dimensions:
+      - name: order_id
+        description: The order id field represents the integer for orders.
+        type: integer
+        column: order_id
+        primary_key: true
+      - name: customer_id
+        description: The customer id field represents the integer for orders.
+        type: integer
+        column: customer_id
+        primary_key: true
+      - name: item_name
+        description: The item name field represents the string for orders.
+        type: string
+        column: item_name
+        primary_key: false

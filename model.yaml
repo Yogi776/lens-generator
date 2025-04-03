@@ -1,0 +1,158 @@
+logical_model: in-moment-intelligence
+source: icebase
+schema: retail
+models:
+  - customer
+  - account
+  - transaction
+  - transaction_context
+  - transaction_event
+  - merchant_demographics
+entities:
+  customer:
+    - name: customer_id
+      type: number
+    - name: first_name
+      type: string
+    - name: last_name
+      type: string
+    - name: date_of_birth
+      type: time
+    - name: age
+      type: number
+    - name: gender
+      type: string
+    - name: nationality
+      type: string
+    - name: marital_status # Single, Married
+      type: string
+    - name: address_line1
+      type: string
+    - name: city
+      type: string
+    - name: postal_code
+      type: string
+    - name: country
+      type: string
+    - name: phone_number
+      type: string
+    - name: email_id
+      type: string
+    - name: employment_status
+      type: string
+    - name: identification_type # Passport, Driver’s License, National Insurance Number
+      type: string
+    - name: identification_number
+      type: string
+    - name: communication_channel # Email, SMS, Phone
+      type: string
+    - name: credit_score
+      type: number
+    - name: risk_level # Low, Medium, High
+      type: string
+    - name: fraud_risk # Low, Medium, High
+      type: string
+    - name: customer_status # Active, Inactive, Closed
+      type: string
+    - name: income
+      type: string # High medium Low
+    - name: family_size
+      type: string # Small Medium large
+    - name: education_level
+      type: string
+    - name: customer_join_date
+      type: time
+
+# one customer have mutiple credit cards
+  # max -- 2 (High)
+  # min -- 1 (medium, low)
+  # Type of credit cards
+  # product:  Cashback credit cards, World Elite Mastercard, and Business credit and charge cards.
+# Lloyds Bank customers can have up to two credit cards with Lloyds Bank, and up to five Lloyds Banking Group credit cards. This includes credit cards from Halifax, Bank of Scotland, and MBNA
+# 4+3 product
+  account:
+    - name: account_id
+      type: number
+    - name: customer_id
+      type: number
+    - name: account_number
+      type: string
+    - name: account_status # Active, Closed, Frozen
+      type: string
+    - name: date_issued
+      type: time
+    - name: expired_date  # 10 Years - 15 Years  # depend on the income level
+      type: time
+    - name: currency
+      type: string
+    - name: credit_limit # depend on the income
+      type: number
+    - name: product_name
+      type: string
+    - name: product_id
+      type: string
+  transaction:
+    - name: transaction_id
+      type: number
+    - name: customer_id
+      type: number
+    - name: transaction_date
+      type: time
+    - name: transaction_type
+      type: string
+    - name: transaction_amount
+      type: decimal
+    - name: spend_category
+      type: string
+    - name: balance
+      type: decimal
+    - name: card_type
+      type: string
+    - name: card_spend_limit
+      type: decimal
+    - name: last_bill_date
+      type: time
+  transaction_context:
+    - name: transaction_context_id
+      type: number
+    - name: transaction_id
+      type: number
+      reference: transaction.transaction_id
+    - name: transaction_location
+      type: string
+    - name: transaction_channel # Online, ATM, Branch, Mobile App
+      type: string
+    - name: device_type # Mobile, Desktop
+      type: string
+    - name: ip_address
+      type: string
+  merchant_demographics:
+    - name: merchant_id
+      type: number
+    - name: transaction_id
+      type: number
+      reference: transaction.transaction_id
+    - name: merchant_name
+      type: string
+    - name: merchant_category # Retail, Restaurant, Groceries, etc.
+      type: string
+    - name: merchant_city
+      type: string
+    - name: merchant_country
+      type: string
+  transaction_event:
+    - name: transaction_event_id
+      type: number
+    - name: transaction_id
+      type: number
+    - name: event_type # Authorization, Decline, Fraud Alert
+      type: string
+    - name: event_timestamp
+      type: time
+    - name: event_status # Success, Failed, etc
+      type: string
+root_files:
+  - docker-compose.yaml
+deployed: device-360.yaml
+view_file: insight.yaml
+user_groups_file: user_groups.yaml

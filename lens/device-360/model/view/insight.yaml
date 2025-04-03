@@ -1,0 +1,21 @@
+views:
+  - name: device_utilization_rate
+    description: This metric measures the percentage of time a device is actively used compared to its total available time. It helps assess the efficiency of device usage and identify opportunities for optimizing resource allocation.
+    public: true
+    meta:
+      tags:
+        - DPDomain.Device Intelligence
+        - DPUsecase.Device Performance Analysis
+        - DPTier.Gold
+      metric:
+        expression: '*/5  * * * *'
+        timezone: UTC
+        window: month
+    tables:
+      - join_path: process_event
+        prefix: true
+        includes:
+          - avg_process_cpu_usage
+          - process_cpu_usage_perc
+          - process_file_modified_date
+          - product_name

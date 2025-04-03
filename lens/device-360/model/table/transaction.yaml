@@ -1,0 +1,35 @@
+tables:
+  - name: transaction
+    sql: '{{ load_sql(''transaction'') }}'
+    description: Comprehensive data on transactions, including core attributes, relationships, and transactional details.
+    public: true
+    joins:
+      - name: transaction
+        relationship: one_to_many
+        sql: '{{TABLE.transaction_id}}={transaction.transaction_id}'
+    dimensions:
+      - name: transaction_id
+        description: The transaction id field represents the integer for transaction.
+        type: integer
+        column: transaction_id
+        primary_key: true
+      - name: customer_id
+        description: The customer id field represents the integer for transaction.
+        type: integer
+        column: customer_id
+        primary_key: true
+      - name: product_id
+        description: The product id field represents the integer for transaction.
+        type: integer
+        column: product_id
+        primary_key: true
+      - name: quantity
+        description: The quantity field represents the integer for transaction.
+        type: integer
+        column: quantity
+        primary_key: false
+      - name: transaction_date
+        description: The transaction date field represents the date for transaction.
+        type: date
+        column: transaction_date
+        primary_key: false

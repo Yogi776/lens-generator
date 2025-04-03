@@ -1,0 +1,15 @@
+version: '3.8'
+services:
+  lens_generator:
+    image: modern123/lens_generator:1.27
+    volumes:
+      - ./model.yaml:/app/model.yaml  # Mount the model.yaml configuration file
+      - ./lens:/app/lens  # Mount a local directory for output files
+    env_file:
+      - ./.env  # Load environment variables from .env file
+    environment:
+      - OUTPUT_PATH=/app/lens/  # Specify the output path used in your script
+    command: python development.py  # Adjust based on the entry point file for your code
+    ports:
+      - "8080:8080"  # Adjust the port if your application requires it
+    restart: "no"  # Prevent the container from restarting, allowing it to stop after completion

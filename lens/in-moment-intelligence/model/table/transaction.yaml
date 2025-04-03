@@ -1,0 +1,60 @@
+tables:
+  - name: transaction
+    sql: '{{ load_sql(''transaction'') }}'
+    description: Comprehensive data on transactions, including core attributes, relationships, and transactional details.
+    public: true
+    joins:
+      - name: transaction
+        relationship: one_to_many
+        sql: '{{TABLE.transaction_id}}={transaction.transaction_id}'
+    dimensions:
+      - name: transaction_id
+        description: Transaction id is a numerical identifier unique to each transaction within the transaction entity.
+        type: number
+        column: transaction_id
+        primary_key: true
+      - name: customer_id
+        description: The customer id is a numerical field in the transaction entity that uniquely identifies each customer.
+        type: number
+        column: customer_id
+        primary_key: true
+      - name: transaction_date
+        description: Transaction date is a time-based field in the transaction entity, indicating the date and time when a transaction was initiated.
+        type: time
+        column: transaction_date
+        primary_key: false
+      - name: transaction_type
+        description: Transaction type is a string field in the transaction entity that describes the nature or category of each transaction.
+        type: string
+        column: transaction_type
+        primary_key: false
+      - name: transaction_amount
+        description: The transaction amount field represents the monetary value of a transaction in decimal form.
+        type: decimal
+        column: transaction_amount
+        primary_key: false
+      - name: spend_category
+        description: The spend category field represents the categorization of an expenditure in a financial transaction as a text string.
+        type: string
+        column: spend_category
+        primary_key: false
+      - name: balance
+        description: The balance field stores the monetary amount left after a transaction in decimal format.
+        type: decimal
+        column: balance
+        primary_key: false
+      - name: card_type
+        description: The card type field in the transaction entity represents the type of card used in the transaction, stored as a string.
+        type: string
+        column: card_type
+        primary_key: false
+      - name: card_spend_limit
+        description: The card spend limit field in the transaction entity denotes the maximum amount that can be spent using the card, expressed as a
+        type: decimal
+        column: card_spend_limit
+        primary_key: false
+      - name: last_bill_date
+        description: This field represents the date and time of the last bill issued in a transaction.
+        type: time
+        column: last_bill_date
+        primary_key: false

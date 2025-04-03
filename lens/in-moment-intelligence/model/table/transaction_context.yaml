@@ -1,0 +1,40 @@
+tables:
+  - name: transaction_context
+    sql: '{{ load_sql(''transaction_context'') }}'
+    description: Comprehensive data on transaction_contexts, including core attributes, relationships, and transactional details.
+    public: true
+    joins:
+      - name: transaction
+        relationship: one_to_many
+        sql: '{{TABLE.transaction_context_id}}={transaction.transaction_context_id}'
+    dimensions:
+      - name: transaction_context_id
+        description: Transaction context id is a numeric field in the transaction context entity representing the unique identifier for each transaction context.
+        type: number
+        column: transaction_context_id
+        primary_key: true
+      - name: transaction_id
+        description: The transaction id is a numeric field within the transaction context entity that uniquely identifies each transaction.
+        type: number
+        column: transaction_id
+        primary_key: true
+      - name: transaction_location
+        description: The transaction location field stores the place or site where a transaction occurred in text format.
+        type: string
+        column: transaction_location
+        primary_key: false
+      - name: transaction_channel
+        description: Transaction channel is a string field in the transaction context entity indicating the medium through which the transaction occurred.
+        type: string
+        column: transaction_channel
+        primary_key: false
+      - name: device_type
+        description: The device type field in the transaction context entity represents the category of device used for a transaction as a string.
+        type: string
+        column: device_type
+        primary_key: false
+      - name: ip_address
+        description: The ip address field in the transaction context entity is a string containing the Internet Protocol address involved in the transaction.
+        type: string
+        column: ip_address
+        primary_key: false

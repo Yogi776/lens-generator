@@ -1,0 +1,60 @@
+tables:
+  - name: account
+    sql: '{{ load_sql(''account'') }}'
+    description: Comprehensive data on accounts, including core attributes, relationships, and transactional details.
+    public: true
+    joins:
+      - name: transaction
+        relationship: one_to_many
+        sql: '{{TABLE.account_id}}={transaction.account_id}'
+    dimensions:
+      - name: account_id
+        description: The account id is a numerical identifier unique to each account entity.
+        type: number
+        column: account_id
+        primary_key: true
+      - name: customer_id
+        description: The customer id is a numeric field in the account entity representing the unique identifier of the customer.
+        type: number
+        column: customer_id
+        primary_key: true
+      - name: account_number
+        description: The account number field represents the unique identifier for an account as a string of characters within the account entity.
+        type: string
+        column: account_number
+        primary_key: false
+      - name: account_status
+        description: The account status field specifies the current state of an account as a text string in the account entity.
+        type: string
+        column: account_status
+        primary_key: false
+      - name: date_issued
+        description: The date issued field in the account entity represents the time at which the account was created.
+        type: time
+        column: date_issued
+        primary_key: false
+      - name: expired_date
+        description: The expired date field in the account entity stores the date and time when the account is set to expire.
+        type: time
+        column: expired_date
+        primary_key: false
+      - name: currency
+        description: The currency field in the account entity represents the type of currency used in the account as a text string.
+        type: string
+        column: currency
+        primary_key: false
+      - name: credit_limit
+        description: The credit limit field refers to the maximum amount of credit that an account can borrow, represented as a numeric value.
+        type: number
+        column: credit_limit
+        primary_key: false
+      - name: product_name
+        description: The product name field in the account entity is a string that stores the name of a product.
+        type: string
+        column: product_name
+        primary_key: false
+      - name: product_id
+        description: The product id field is a string type field in the account entity, representing the unique identifier of a product.
+        type: string
+        column: product_id
+        primary_key: true

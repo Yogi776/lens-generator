@@ -1,0 +1,40 @@
+tables:
+  - name: merchant_demographics
+    sql: '{{ load_sql(''merchant_demographics'') }}'
+    description: Comprehensive data on merchant_demographicss, including core attributes, relationships, and transactional details.
+    public: true
+    joins:
+      - name: transaction
+        relationship: one_to_many
+        sql: '{{TABLE.merchant_demographics_id}}={transaction.merchant_demographics_id}'
+    dimensions:
+      - name: merchant_id
+        description: The merchant id field is a numerical identifier for each individual merchant in the merchant demographics entity.
+        type: number
+        column: merchant_id
+        primary_key: true
+      - name: transaction_id
+        description: The transaction id field is a numerical identifier for individual transactions recorded in the merchant demographics entity.
+        type: number
+        column: transaction_id
+        primary_key: true
+      - name: merchant_name
+        description: The merchant name field is a string-type entry in the merchant demographics entity that stores the name of the merchant.
+        type: string
+        column: merchant_name
+        primary_key: false
+      - name: merchant_category
+        description: The merchant category field of the merchant demographics entity is a string type that describes the business sector in which the merchant operates.
+        type: string
+        column: merchant_category
+        primary_key: false
+      - name: merchant_city
+        description: The merchant city field records the city name where the merchants business is located within the merchant demographics entity.
+        type: string
+        column: merchant_city
+        primary_key: false
+      - name: merchant_country
+        description: The merchant country field represents the country where the merchant is located in the merchant demographics entity.
+        type: string
+        column: merchant_country
+        primary_key: false
